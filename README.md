@@ -38,7 +38,18 @@ php artisan queue:work --daemon --delay=120 --tries=20 --no-interaction --queue=
 * `GIT_SSH_KEY` - The private **base64 encoded** SSH key used to connect to your git repo (if any). Must be base64 encoded or will fail.  
 * `GIT_REPO` - The git repository to use for the clone and pull.  
 * `GIT_AUTO_UPDATE` - Should we auto-update the local copy from git? [yes / no, default no]  
-* `GIT_AUTO_UPDATE_INTERVAL` - Time between auto update checks, in seconds. [default 5]
+* `GIT_AUTO_UPDATE_INTERVAL` - Time between auto update checks, in seconds. [default 5]  
+* `APP_ENV_FILE` - The file in the repo (either relative to the repo or fully qualified) to symlink into the .env for the Laravel app
+
+## About the APP_ENV_FILE variable
+
+Laravel usually needs you to do something with the .env file to make it do anything. If you commit an .env file, either as .env or under another file name, we can use that. If it's not under ./.env then you can use the `APP_ENV_FILE` environment variable to tell us where to symlink .env to.
+
+You can also mount the env file as so, instead of using this method:
+
+```
+    -v /dir/my_setup.env:/www/.env:ro
+```
 
 ## About the base64 encoded private key
 
