@@ -52,7 +52,7 @@ If your GIT repo needs an SSH key, you can provide it by using either the `GIT_S
     -v /dir/.ssh/my_key:/root/.ssh/id_rsa:ro
 ```
 
-The important bit is to mount it into **/root/.ssh/id_rsa**. Also, probably don't overwrite the
+The important bit is to mount it into **/root/.ssh/id_rsa**. Also, probably don't overwrite the config file at **root/.ssh/id_rsa**. Or do. I wouldn't.
 
 ## About self-updating
 
