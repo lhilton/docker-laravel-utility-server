@@ -19,6 +19,16 @@ This container has these fancy things:
 
 It assumes that you are running a Laravel app. It will do it's initial build by setting up the database (see the Environment variables below) then doing a git clone of the repo you provide (again, see the Environment variables section). If you let it, it will also do a git reset and git pull to self-update on a definable interval.
 
+Oh, and about Laravel...
+
+### Supervisor, queue workers and cron
+
+The standard [Laravel cron thingy](https://laravel.com/docs/5.6/scheduling#introduction) is setup and running, so you can use that. There is also a queue worker setup (3 processes) to run against the high, default and low queue. It is running like this:
+
+```
+php artisan queue:work --daemon --delay=120 --tries=20 --no-interaction --queue=high,default,low
+```
+
 ## Environment variables
 
 * `MYSQL_ROOT_PASSWORD` - Sets the root password of MySQL  
