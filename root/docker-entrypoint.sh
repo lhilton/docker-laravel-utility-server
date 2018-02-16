@@ -19,4 +19,20 @@ if [ ! -d /www/.git ]; then
     $SETUP_LARAVEL_SCRIPT
 fi
 
+echo ""
+echo ""
+echo ""
+echo ""
+echo "****************************************"
+echo "****************************************"
+echo "**                                    **"
+echo "**      Finished container init!      **"
+echo "**                                    **"
+echo "****************************************"
+echo "****************************************"
+echo ""
+echo ""
+echo ""
+echo ""
+
 exec /usr/bin/supervisord -c /etc/supervisor/supervisord.conf
