@@ -1,8 +1,10 @@
 #!/bin/bash
 set -e
 
-if [[ -e /root/.ssh/id_rsa && "$GIT_SSH_KEY" != "" ]]; then
-    echo "ERROR: You cannot specify a GIT_SSH_KEY environment variable AND mount the /root/.ssh/id_rsa conainer file at the same time."
+if [[ -e /root/.ssh/id_rsa && "$GIT_SSH_KEY" != "" && "$(cat /root/.ssh/id_rsa)" != "$(echo \"$GIT_SSH_KEY\" | base64 -d)" ]]; then
+    echo "ERROR: Environment variable GIT_SSH_KEY doesn't match the persisted /root/.ssh/id_rsa version. This is either because you are trying to use both the environment variable and the mounted file version, or because you changed the key."
+    echo ""
+    echo "Halting the container"
     exit 6
 fi
 
