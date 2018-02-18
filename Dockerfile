@@ -1,5 +1,5 @@
 FROM php:7.2.1-fpm-alpine3.7
-MAINTAINER smpita@usa.net
+
 
 RUN apk update \
     && apk add --no-cache openssh-client git nginx supervisor bash mysql mysql-client vim \
