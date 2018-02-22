@@ -9,7 +9,7 @@ $UPDATE_GIT_SSH_KEY
 
 chmod -R 0600 ~/.ssh
 
-if [ ! -x /mysql/.created ]; then
+if [ ! -f /mysql/.created ]; then
     echo 'Running one-time MySQL setup.'
     $SETUP_MYSQL_SCRIPT
 fi
