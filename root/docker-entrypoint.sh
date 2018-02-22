@@ -6,6 +6,11 @@ SETUP_LARAVEL_SCRIPT=/root/scripts/setup-laravel.sh
 SETUP_MYSQL_SCRIPT=/root/scripts/setup-mysql.sh
 
 $UPDATE_GIT_SSH_KEY
+if [ ! -f /run/mysqld/mysqld.sock ]; then
+    echo 'Creating MySQL socket.'
+    mkdir -p /run/mysqld/
+    touch /run/mysqld/mysqld.sock
+fi
 
 chmod -R 0600 ~/.ssh
 
