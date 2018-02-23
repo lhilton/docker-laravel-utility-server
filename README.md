@@ -39,7 +39,8 @@ php artisan queue:work --daemon --delay=120 --tries=20 --no-interaction --queue=
 * `GIT_REPO` - The git repository to use for the clone and pull.  
 * `GIT_AUTO_UPDATE` - Should we auto-update the local copy from git? [yes / no, default no]  
 * `GIT_AUTO_UPDATE_INTERVAL` - Time between auto update checks, in seconds. [default 5]  
-* `APP_ENV_FILE` - The file in the repo (either relative to the repo or fully qualified) to symlink into the .env for the Laravel app
+* `APP_ENV_BASE64` - A **base54 encoded** copy of your Laravel .env file. Do not use with `APP_ENV_FILE`.  
+* `APP_ENV_FILE` - The file in the repo (either relative to the repo or fully qualified) to symlink into the .env for the Laravel app. Do not use with `APP_ENV_BASE64`.
 
 ## About the APP_ENV_FILE variable
 
@@ -65,6 +66,10 @@ If your GIT repo needs an SSH key, you can provide it by using either the `GIT_S
 
 The important bit is to mount it into **/root/.ssh/id_rsa**. Also, probably don't overwrite the config file at **root/.ssh/id_rsa**. Or do. I wouldn't.
 
+## About the .env file
+
+If your .env mounted in a volume or through a bind, you can provide the path through the `APP_ENV_FILE` environment variable. Another option is to base64 encode the .env file and pass it to the container in the `APP_ENV_BASE64` environment variable. **If you try to use both at the same time, `APP_ENV_FILE` will be ignored**.
+
 ## About self-updating
 
 The `GIT_AUTO_UPDATE` feature makes the assumption that you are okay with these shell commands being run according to the `GIT_AUTO_UPDATE_INTERVAL` definition:
@@ -73,5 +78,5 @@ The `GIT_AUTO_UPDATE` feature makes the assumption that you are okay with these 
 git reset --hard HEAD
 git pull
 composer install
-php artisan migrate
+php artisan migrate --force
 ```
