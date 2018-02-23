@@ -9,6 +9,6 @@ pushd /www
 
 /root/scripts/update-app-from-git.sh
 
-php artisan db:seed
+php artisan db:seed --force
 
 /root/scripts/mysql-stop.sh
