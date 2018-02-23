@@ -1,11 +1,13 @@
 #!/bin/bash
 set -e
 
+UPDATE_WWW_ENV=/root/scripts/update-www-env.sh
 UPDATE_GIT_SSH_KEY=/root/scripts/update-git-ssh-key.sh
 SETUP_LARAVEL_SCRIPT=/root/scripts/setup-laravel.sh
 SETUP_MYSQL_SCRIPT=/root/scripts/setup-mysql.sh
 
 $UPDATE_GIT_SSH_KEY
+$UPDATE_WWW_ENV
 
 chmod -R 0600 ~/.ssh
 
