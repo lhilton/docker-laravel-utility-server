@@ -7,11 +7,8 @@ SETUP_LARAVEL_SCRIPT=/root/scripts/setup-laravel.sh
 SETUP_MYSQL_SCRIPT=/root/scripts/setup-mysql.sh
 
 $UPDATE_GIT_SSH_KEY
-chmod -R 0600 ~/.ssh
 
-if [ -d /www/.git ]; then
-    $UPDATE_WWW_ENV
-fi
+chmod -R 0600 ~/.ssh
 
 if [ ! -f /mysql/.created ]; then
     echo 'Running one-time MySQL setup.'
@@ -21,6 +18,10 @@ fi
 if [ ! -d /www/.git ]; then
     echo 'Running one-time App setup script.'
     $SETUP_LARAVEL_SCRIPT
+fi
+
+if [ -d /www/.git ]; then
+    $UPDATE_WWW_ENV
 fi
 
 echo ""
