@@ -10,4 +10,4 @@ if [[ ! -e /www/.env ]]; then
 fi
 
 composer install
-php artisan migrate
+php artisan migrate --force
