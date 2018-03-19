@@ -1,11 +1,11 @@
 FROM php:7.2.1-fpm-alpine3.7
 
-
 RUN apk update \
     && apk add --no-cache openssh-client git nginx supervisor bash mysql mysql-client vim \
-        gd freetype libpng libjpeg-turbo freetype-dev libpng-dev libjpeg-turbo-dev \
+        gd freetype libpng libjpeg-turbo freetype-dev libpng-dev libjpeg-turbo-dev php7-zip \
     && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
     && docker-php-ext-install gd \
+    && docker-php-ext-install zip \
     && docker-php-ext-install pdo_mysql
 
 ADD https://getcomposer.org/composer.phar /usr/bin/composer
