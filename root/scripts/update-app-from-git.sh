@@ -11,3 +11,6 @@ $UPDATE_WWW_ENV
 
 composer install
 php artisan migrate --force
+php artisan queue:restart
+sleep 5
+php artisan queue:restart
